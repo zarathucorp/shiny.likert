@@ -26,7 +26,7 @@ ui <- navbarPage(
     span(
       a(
         icon('github'), 
-        href = 'https://github.com/jhk0530', 
+        href = 'https://github.com/zarathucorp/shiny.likert', 
         target = "_blank",
         style = 'color: white;'
       ),

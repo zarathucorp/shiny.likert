@@ -6,7 +6,7 @@ library(dplyr)
 library(likert)
 library(sortable)
 library(shinyWidgets)
-
+library(colourpicker)
 ui <- navbarPage(
   header = tagList(
     tags$head(

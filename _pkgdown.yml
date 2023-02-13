@@ -19,3 +19,8 @@ template:
   bslib:
     border-radius: 0.5rem
     btn-border-radius: 0.25rem
+
+navbar:
+  structure:
+    left: [intro, reference]
+    right: [github]

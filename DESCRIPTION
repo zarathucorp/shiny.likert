@@ -1,0 +1,21 @@
+Package: shiny.likert
+Title: Shiny package to build likert chart
+Version: 0.0.1
+Authors@R: 
+    person("Jinhwan", "Kim", , "jinhwan@zarathu.com", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Interactive shiny application to get data from user and build chart.
+License: License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+  shiny,
+  bslib,
+  colourpicker,
+  dplyr,
+  ggplot2,
+  likert,
+  plotly,
+  shinyWidgets,
+  sortable

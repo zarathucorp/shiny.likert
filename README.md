@@ -2,13 +2,14 @@
 
 Shiny application for generate likert chart.
 
-## :wrench: Install
+## :wrench: Install and Run application
 
-> `shiny.likert` not supports installable package yet.
+```{r}
+remotes::install_github('zarathucorp/shiny.likert')
+library(shiny.likert)
 
-Until that, please use `shinyapps.io` or **Clone and utilize app.R** File.
-
-Thanks
+shiny.likert()
+```
 
 ## :clipboard: Prerequisites
 

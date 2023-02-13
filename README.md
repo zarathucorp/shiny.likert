@@ -1,4 +1,4 @@
-# :yellow_heart: shiny.likert <img src = 'hexsticker.png' width = 120 align = 'right'>
+# :yellow_heart: shiny.likert <img src = 'man/figures/hexsticker.png' width = 120 align = 'right'>
 
 Shiny application for generate likert chart.
 

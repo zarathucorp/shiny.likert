@@ -1,0 +1,21 @@
+url: https://github.com/zarathucorp/shiny.likert
+
+development:
+  mode: auto
+
+home:
+  title: Build likert chart with shiny.
+  search: false
+authors:
+  Jinhwan Kim:
+    href: https://github.com/jhk0530
+  Zarathu:
+    href: https://www.zarathu.com
+    html: <img src="https://raw.githubusercontent.com/zarathucorp/zarathu/master/Color%20logo%20-%20no%20background.png" height="24" />
+
+template:
+  bootstrap: 5
+  bootswatch: lumen
+  bslib:
+    border-radius: 0.5rem
+    btn-border-radius: 0.25rem

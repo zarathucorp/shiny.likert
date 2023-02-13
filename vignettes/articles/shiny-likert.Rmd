@@ -1,0 +1,63 @@
+---
+title: "shiny.likert"
+
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## 📂 Data
+
+### 1. CSV from Google sheets & Google Form
+- `shiny.likert` was developed in consideration of Google Sheets. However, accessing sheet using `googlesheets4` package requires some **Auth** problem which may induce security problem. 
+- So, `shiny.likert` accepts CSV file (downloaded)
+
+You can check [pre-built form](https://docs.google.com/forms/d/e/1FAIpQLScLLoQCpbP45XEGqFlv7TA1FozQoac6DMk0Gmi9mH0ru4cGYQ/viewform) and it's [data](https://github.com/zarathucorp/shiny.likert/blob/main/Test%20Survey%20Data(Response).csv).(download it)
+
+This data is consisted with 3 columns. 
+
+1. Timestamp (When user submited survey)
+2. Multiple choice question (from **Strongly agree** to **Strongly disagree**)
+
+### 2. Example data from `likert` package
+
+Since `shiny.likert` utilize [`likert`](https://github.com/jbryer/likert) package, you can use this data as tutorial. but still you should save it as **csv file**.
+
+```{r}
+library(likert)
+data("pisaitems")
+write.csv(pisaitems[,2:5], file = 'pisaitems.csv', row.names = FALSE)
+```
+
+Since full dataset of pisaitem has large size (for shinyapps) we'll only try for some column
+
+
+## 🕹️ Run application
+
+```{r setup, eval=FALSE}
+library(shiny.likert)
+
+shiny.likert() # Run shiny application
+```
+
+With this code, you can run shiny application. 
+
+If you run this in browser like chrome (rathen than rstudio viewer), UI layout will be little better (`shiny.likert` developed in chrome environment)
+
+Below is step to generate likert chart.
+
+1. Upload your csv file
+2. Select column to visualize
+  - **NOTE** You should select columns with same range variable.
+  - For example, column 1 consisted with `A` ~ `E`, and column 2 is consisted with `Good` ~ `Bad`
+  you can only select one of them. or app will not work properly
+  
+3. Order the variables, (**Bad option** goes into **Top**)
+4. `Draw` button
+5. Customize chart options.
+6. Save the image 
+

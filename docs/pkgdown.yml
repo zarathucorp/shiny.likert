@@ -1,0 +1,10 @@
+pandoc: 2.19.2
+pkgdown: 2.0.7
+pkgdown_sha: ~
+articles:
+  shiny-likert: shiny-likert.html
+last_built: 2023-02-13T04:25Z
+urls:
+  reference: https://github.com/zarathucorp/shiny.likert/reference
+  article: https://github.com/zarathucorp/shiny.likert/articles
+

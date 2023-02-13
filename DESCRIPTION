@@ -19,3 +19,5 @@ Imports:
   plotly,
   shinyWidgets,
   sortable
+Suggests: 
+    rmarkdown

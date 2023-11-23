@@ -1,3 +1,4 @@
+library(plyr)
 library(shiny)
 library(bslib)
 library(ggplot2)
@@ -25,8 +26,8 @@ ui <- navbarPage(
     'Shiny.Likert',
     span(
       a(
-        icon('github'), 
-        href = 'https://github.com/zarathucorp/shiny.likert', 
+        icon('github'),
+        href = 'https://github.com/zarathucorp/shiny.likert',
         target = "_blank",
         style = 'color: white;'
       ),
@@ -42,11 +43,11 @@ ui <- navbarPage(
   ),
   footer = span(HTML(
   '<p class="footer-heart">
-   Made with 
+   Made with
    <g-emoji class="g-emoji" alias="heart" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png">
     <img class="emoji" alt="heart" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png">
-   </g-emoji> by 
-   <a href="https://www.linkedin.com/in/jinhwan-kim/" target = "_blank">Jinhwan Kim</a> and 
+   </g-emoji> by
+   <a href="https://www.linkedin.com/in/jinhwan-kim/" target = "_blank">Jinhwan Kim</a> and
    <a href="https://www.zarathu.com/" target ="_blank">Zarathu</a>
     </p>'), class = 'footer'),
   lang = "ko",
@@ -55,7 +56,7 @@ ui <- navbarPage(
     sidebarLayout(
       sidebarPanel(
         width = 3,
-        
+
         fileInput(
           inputId = 'file',
           label = 'Upload CSV File',
@@ -85,25 +86,25 @@ server <- function(input, output) {
       tagList(
         hr(),
         selectInput(
-          inputId = 'columns', 
-          label = 'Select Likert Column', 
+          inputId = 'columns',
+          label = 'Select Likert Column',
           choices = colnames(v),
           multiple = TRUE
         )
       )
     })
-    
+
   })
-  
+
   observeEvent(input$columns, {
     u <- character(0)
-    
+
     for(i in input$columns){
       u <- union(u, unique(v[,i]))
     }
-    
+
     u <<- u
-    
+
     output$orderUI <- renderUI({
       tagList(
         hr(),
@@ -114,17 +115,17 @@ server <- function(input, output) {
         ),
         br(),
         sliderInput(
-          inputId = 'height', 
-          label = 'Chart Height', 
-          value = 400, 
-          min = 200, 
-          max = 1000, 
+          inputId = 'height',
+          label = 'Chart Height',
+          value = 400,
+          min = 200,
+          max = 1000,
           step = 100
         ),
         actionButton(inputId = 'draw', label = 'draw', style = 'width: 100%')
       )
     })
-    
+
     output$optionUI <- renderUI({
       tagList(
         h6("Chart options"),
@@ -147,11 +148,11 @@ server <- function(input, output) {
           column(
             width = 4,
             sliderInput(
-              inputId = 'text.size', 
-              label = 'Text Size', 
-              min = 1, 
-              max = 10, 
-              value = 3, 
+              inputId = 'text.size',
+              label = 'Text Size',
+              min = 1,
+              max = 10,
+              value = 3,
               step = 1
             )
           )
@@ -160,18 +161,18 @@ server <- function(input, output) {
           column(
             width = 4,
             sliderInput(
-              inputId = 'center', 
-              label = 'Center', 
-              value = (1 + length(u))/2, 
-              min = 1.5, 
-              max = length(u) - 0.5, 
+              inputId = 'center',
+              label = 'Center',
+              value = (1 + length(u))/2,
+              min = 1.5,
+              max = length(u) - 0.5,
               step = 0.5
             )
           ),
           column(
             width = 4,
             radioGroupButtons(
-              inputId = 'inc', 
+              inputId = 'inc',
               label = 'Include center',
               choices = c('O', 'X'),
               justified = TRUE
@@ -195,9 +196,9 @@ server <- function(input, output) {
           column(
             width = 4,
             radioGroupButtons(
-              inputId = 'legend.position', 
-              label = 'Legend position', 
-              choices = c('right', 'none'), 
+              inputId = 'legend.position',
+              label = 'Legend position',
+              choices = c('right', 'none'),
               selected = 'right',
               justified = TRUE
             )
@@ -221,18 +222,18 @@ server <- function(input, output) {
       )
     })
   })
-  
+
   observeEvent(input$draw, {
-    
+
     output$plotUI <- renderUI({
       plotlyOutput(outputId = 'plot', height = paste0(input$height, 'px'))
     })
-    
-    
+
+
     idx <- sapply(input$columns, function(i){
       which(colnames(v) == i)
     })
-    
+
     vv <<- v[,idx]
     if(length(idx) > 1){
       for(i in 1:ncol(vv)){
@@ -243,17 +244,17 @@ server <- function(input, output) {
       vv <- data.frame(as.factor(vv))
       colnames(vv) <- input$columns
     }
-    
+
     ll <- likert(vv)
-    
-    
+
+
     output$plot <- renderPlotly({
       ggplotly(plot(
-        ll, 
+        ll,
         plot.percents = ("Mid" %in% input$pps),
         plot.percent.low = ("Bad" %in% input$pps),
         plot.percent.high = ("Good" %in% input$pps),
-        center = input$center, 
+        center = input$center,
         include.center = ("O" == input$inc),
         centered = ("O" == input$centered),
         #include.histogram = input$hist # NOT WORK WITH PLOTLY
@@ -267,9 +268,9 @@ server <- function(input, output) {
       ))
     })
   })
-  
-  
+
+
 }
 
-# Run the application 
+# Run the application
 shinyApp(ui = ui, server = server)

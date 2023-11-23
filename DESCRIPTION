@@ -1,6 +1,6 @@
 Package: shiny.likert
 Title: Shiny package to build likert chart
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
     person("Jinhwan", "Kim", , "jinhwan@zarathu.com", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
@@ -15,6 +15,7 @@ Imports:
   bslib,
   colourpicker,
   dplyr,
+  plyr,
   ggplot2,
   likert,
   plotly,

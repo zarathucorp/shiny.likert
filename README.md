@@ -4,7 +4,7 @@ Shiny application for generate likert chart.
 
 ## :wrench: Install and Run application
 
-```{r}
+``` r
 remotes::install_github('zarathucorp/shiny.likert')
 library(shiny.likert)
 
